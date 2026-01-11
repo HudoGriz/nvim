@@ -9,7 +9,7 @@ return {
     opts = {
       mappings = {
         complete = {
-          insert = "<C-Tab>",
+          -- insert = "<C-Tab>",
         },
       },
     },
