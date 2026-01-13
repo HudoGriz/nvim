@@ -11,6 +11,10 @@ return {
         complete = {
           -- insert = "<C-Tab>",
         },
+        reset = {
+          normal = "<leader>cr",
+          insert = "<C-S-r>",
+        },
       },
     },
   },

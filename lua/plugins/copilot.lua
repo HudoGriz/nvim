@@ -15,7 +15,7 @@ return {
       -- Accept Suggestion: <C-.>
       vim.keymap.set(
         "i",
-        "<C-.>",
+        "<M-W>",
         'copilot#Accept("")',
         { expr = true, replace_keycodes = false, silent = true, desc = "Copilot Accept" }
       )
@@ -24,7 +24,7 @@ return {
       vim.keymap.set("i", "<M-w>", "<Plug>(copilot-accept-word)", { remap = true, desc = "Copilot Accept Word" })
 
       -- Accept Line: <M-l>
-      vim.keymap.set("i", "<M-l>", "<Plug>(copilot-accept-line)", { remap = true, desc = "Copilot Accept Line" })
+      vim.keymap.set("i", "<M-L>", "<Plug>(copilot-accept-line)", { remap = true, desc = "Copilot Accept Line" })
 
       -- Cycle Next: <M-]>
       vim.keymap.set("i", "<M-]>", "<Plug>(copilot-next)", { remap = true, desc = "Copilot Next" })
@@ -35,7 +35,7 @@ return {
       -- Dismiss: <C-/>
       -- Note: In some terminals, <C-/> sends the same code as <C-_>.
       -- If this doesn't work, try changing "<C-/>" to "<C-_>"
-      vim.keymap.set("i", "<C-/>", "<Plug>(copilot-dismiss)", { remap = true, desc = "Copilot Dismiss" })
+      vim.keymap.set("i", "<M-e>", "<Plug>(copilot-dismiss)", { remap = true, desc = "Copilot Dismiss" })
     end,
   },
 }
