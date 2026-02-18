@@ -12,7 +12,9 @@ return {
       }
     end,
     config = function()
-      -- Accept Suggestion: <C-.>
+      -- Accept Suggestion: <M-W> (Meta/Alt+w). Note: the README/comment previously
+      -- referenced <C-.> which is not used here; leave <C-.> alone to avoid
+      -- confusion with other plugins that might bind it.
       vim.keymap.set(
         "i",
         "<M-W>",
