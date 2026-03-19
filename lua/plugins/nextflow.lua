@@ -8,6 +8,36 @@ return {
         extension = {
           nf = "nextflow",
           ["nf.test"] = "nextflow",
+          -- Detect .config files as nextflow by inspecting content for Nextflow keywords
+          config = function(path, bufnr)
+            local lines = vim.api.nvim_buf_get_lines(bufnr, 0, 50, false)
+            -- Match Nextflow-specific top-level scope blocks and directives
+            local nf_patterns = {
+              "^%s*process%s*{",
+              "^%s*executor%s*{",
+              "^%s*singularity%s*{",
+              "^%s*docker%s*{",
+              "^%s*profiles%s*{",
+              "^%s*params%s*{",
+              "^%s*manifest%s*{",
+              "^%s*timeline%s*{",
+              "^%s*report%s*{",
+              "^%s*trace%s*{",
+              "^%s*dag%s*{",
+              "^%s*includeConfig%s",
+              "^%s*withName%s*:",
+              "^%s*withLabel%s*:",
+            }
+            for _, pat in ipairs(nf_patterns) do
+              for _, line in ipairs(lines) do
+                if line:match(pat) then
+                  return "nextflow"
+                end
+              end
+            end
+            -- Not a Nextflow config, let other detectors handle it
+            return nil
+          end,
         },
         pattern = {
           ["nextflow%.config"] = "nextflow",
@@ -15,6 +45,13 @@ return {
         filename = {
           ["nextflow.config"] = "nextflow",
         },
+      })
+
+      vim.api.nvim_create_autocmd("FileType", {
+        pattern = "nextflow",
+        callback = function()
+          vim.bo.commentstring = "// %s"
+        end,
       })
     end,
     opts = function(_, opts)
